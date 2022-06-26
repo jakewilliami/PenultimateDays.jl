@@ -1,5 +1,11 @@
 <h1 align="center">PenultimateDays.jl</h1>
 
+<!-- [![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](https://jakewilliami.github.io/PenultimateDays.jl/stable) -->
+[![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://jakewilliami.github.io/PenultimateDays.jl/dev)
+[![CI](https://github.com/invenia/PkgTemplates.jl/workflows/CI/badge.svg)](https://github.com/jakewilliami/PenultimateDays.jl/actions?query=workflow%3ACI)
+[![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
+![Project Status](https://img.shields.io/badge/status-maturing-green)
+
 Similar to [Dates](https://github.com/JuliaLang/julia/tree/master/stdlib/Dates)' `firstdayof*` and `lastdayof*`, I introduce to you `penultimatedayof*`; a useful function to find the second-to-last day of a measure of time.
 
 Unlike Dates' `*dayof*` functions, I have extended functionality to find, for example, the penultimate _Tuesday_ of a measure of time.  We have also extended some of Dates' `*dayof*` functions to allow this functionality.
