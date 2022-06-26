@@ -10,7 +10,8 @@ Documenter.makedocs(
     sitename = "PenultimateDays Documentation",
     expandfirst = [],
     pages = [
-        "Index" => "index.md",
+        "Home" => "index.md",
+        "Documentation" => "documentation.md",
     ]
 )
 
