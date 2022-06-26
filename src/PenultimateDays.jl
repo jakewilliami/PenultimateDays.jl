@@ -2,13 +2,6 @@ module PenultimateDays
 
 using Dates
 
-for t in (:week, :month, :quarter, :year)
-    f = Symbol("penultimatedayof$(t)")
-    @eval $f(dt::TimeType) = error("not yet implemented")
-    @eval $f(dt::TimeType, d::Int) = error("not yet implemented")
-    @eval export $f
-end
-
 # Dates (stdlib) extended
 
 for m in (:first, :last), t in (:week, :month, :quarter, :year)
@@ -58,5 +51,22 @@ lastdayofquarter(dt::TimeType, d::Int) = lastdayofmonth(lastdayofquarter(dt), d)
 
 firstdayofyear(dt::TimeType, d::Int) = firstdayofmonth(firstdayofyear(dt), d)
 lastdayofyear(dt::TimeType, d::Int) = lastdayofmonth(lastdayofyear(dt), d)
+
+
+# Trivial Penultimate Functions
+
+for t in (:week, :month, :quarter, :year)
+    f, f′ = Symbol("penultimatedayof$(t)"), Symbol("lastdayof$(t)")
+    ts = string(t)
+    @eval begin 
+        @doc """
+            $($f)(datetime::TimeType)
+        
+        Adjusts dt to the penultimate (second-to-last) day of its $($ts).
+        """
+        $f(dt::TimeType) = $f′(dt) - Day(1)
+        export $f
+    end
+end
 
 end  # end module

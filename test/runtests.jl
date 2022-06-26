@@ -23,7 +23,7 @@ end)
         # Week
         @test penultimatedayofweek(d1) == Date(2022, 6, 25)
         @test penultimatedayofweek(d2) == Date(2023, 1, 14)
-        @test penultimatedayofweek(d3) == Date(2023, 2, 12)
+        @test penultimatedayofweek(d3) == Date(2033, 2, 12)
         
         # Month
         @test penultimatedayofmonth(d1) == Date(2022, 6, 29)
