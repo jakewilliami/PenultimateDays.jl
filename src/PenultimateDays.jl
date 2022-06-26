@@ -73,4 +73,32 @@ for t in (:week, :month, :quarter, :year)
     end
 end
 
+
+# Day-specific Penultimate Functions
+
+## Week
+
+penultimatedayofweek(dt::TimeType, d::Int) = 
+    throw(ArgumentError("It is impossible to find the second-to-last day of a week (specifying the day) wth necessarily only one of each days in the week"))
+
+## Month, Quarter, and Year
+
+for t in (:month, :quarter, :year)
+    f, f′ = Symbol("penultimatedayof$(t)"), Symbol("lastdayof$(t)")
+    ts = string(t)
+    @eval begin
+        @doc """
+            $($f)(dt::TimeType, d::Int) -> TimeType
+        
+        Adjusts `dt` to the penultimate (second-to-last) day of its $($ts), given some `d`, the day of the week as an `Int`, with `1 = Monday, 2 = Tuesday, &c...`
+        
+        For example, the `$($f)(dt, 6)` will find the penultimate Saturday of the $($ts).  Dates also exports integer aliases `Monday`–`Sunday`, so you can write `$($f)(dt, Saturday)`.
+                
+        See also: `Dates.dayofweek`, `$($f′)`
+        """
+        $f(dt::TimeType, d::Int) = $f′(dt, d) - Week(1)
+    end
+end
+
 end  # end module
+
