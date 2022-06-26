@@ -76,6 +76,11 @@ end
 
 # Day-specific Penultimate Functions
 
+## Week
+
+penultimatedayofweek(dt::TimeType, d::Int) = 
+    throw(ArgumentError("It is impossible to find the second-to-last day of a week (specifying the day) wth necessarily only one of each days in the week"))
+
 ## Month
 
 """

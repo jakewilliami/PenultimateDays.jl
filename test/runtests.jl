@@ -52,6 +52,7 @@ end)
         # Week
         ## Cannot have a second to last specified day in a week, which
         ## only contains one of each day
+        @test_throws ArgumentError penultimatedayofweek(d1, Tuesday)
         
         # Month
         @test penultimatedayofmonth(d1, Monday) == Date(2022, 6, 20)
@@ -87,7 +88,6 @@ end)
         @test penultimatedayofyear(d3, Sunday) == Date(2033, 12, 18)
         
         # Time type
-        @test penultimatedayofweek(dt, Tuesday) isa typeof(dt)
         @test penultimatedayofmonth(dt, Tuesday) isa typeof(dt)
         @test penultimatedayofquarter(dt, Tuesday) isa typeof(dt)
         @test penultimatedayofyear(dt, Tuesday) isa typeof(dt)
