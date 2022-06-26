@@ -68,11 +68,11 @@ end)
         # Quarter
         @test penultimatedayofquarter(d1, Monday) == Date(2022, 6, 20)
         @test penultimatedayofquarter(d1, Wednesday) == Date(2022, 6, 22)
-        @test penultimatedayofquarter(d1, Sunday) == Date(2022, 19)
+        @test penultimatedayofquarter(d1, Sunday) == Date(2022, 6, 19)
         @test penultimatedayofquarter(d2, Monday) == Date(2023, 3, 20)
         @test penultimatedayofquarter(d2, Wednesday) == Date(2023, 3, 22)
         @test penultimatedayofquarter(d2, Sunday) == Date(2023, 3, 19)
-        @test penultimatedayofquarter(d3, Monday) == Date(2033, 3, 20)
+        @test penultimatedayofquarter(d3, Monday) == Date(2033, 3, 21)
         @test penultimatedayofquarter(d3, Wednesday) == Date(2033, 3, 23)
         @test penultimatedayofquarter(d3, Sunday) == Date(2033, 3, 20)
         
