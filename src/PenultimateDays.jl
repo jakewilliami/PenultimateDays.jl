@@ -3,17 +3,27 @@ module PenultimateDays
 using Dates
 
 for t in (:week, :month, :quarter, :year)
-    pf = Symbol("penultimatedayof$(t)")
-    @eval $pf(dt::TimeType) = error("not yet implemented")
-    @eval $pf(dt::TimeType, d::Int) = error("not yet implemented")
-    @eval export $pf
+    f = Symbol("penultimatedayof$(t)")
+    @eval $f(dt::TimeType) = error("not yet implemented")
+    @eval $f(dt::TimeType, d::Int) = error("not yet implemented")
+    @eval export $f
 end
 
 # Dates (stdlib) extended
 
 for m in (:first, :last), t in (:week, :month, :quarter, :year)
-    ef = Symbol("$(m)dayof$(t)")
-    @eval import Dates: $ef
+    f = Symbol("$(m)dayof$(t)")
+    ms, ts = string(m), string(t)
+    @eval begin 
+        import Dates: $f
+        
+        @doc """
+            $($f)(datetime::TimeType, day::Int)
+        
+        Find the $($ms) day of the $($ts) that is a (Monday = 1, Tuesday = 2, &c.).
+        """
+        $f
+    end
 end
 
 ## Week
