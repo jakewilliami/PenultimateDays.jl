@@ -2,6 +2,18 @@ using Dates
 using PenultimateDays
 using Test
 
+#=Test.eval(quote
+	function record(ts::DefaultTestSet, t::Error)  # t::Union{Fail, Error}
+        if t isa Error
+            e = only(match(r"^(\w+)\(.*\)$", t.value).captures)
+            if e == "ErrorException" # || e == "MethodError"
+                push!(ts.results, t)
+            end
+        end
+	end
+end)
+=#
+
 @testset "PenultimateDays.jl" begin
     d1 = Date(2022, 6, 24)
     d2 = Date(2023, 1, 12)
@@ -30,6 +42,10 @@ using Test
     end
     
     @testset "Day-specific Penultimate Functions" begin
+        # Week
+        ## Cannot have a second to last specified day in a week, which
+        ## only contains one of each day
+        
         # Month
         @test penultimatedayofmonth(d1, Monday) == Date(2022, 6, 20)
         @test penultimatedayofmonth(d1, Wednesday) == Date(2022, 6, 22)
@@ -65,6 +81,26 @@ using Test
     end
     
     @testset "Dates (stdlib) Extended" begin
+        # Week
+        @test firstdayofweek(d1, Monday) == Date(2022, 6, 20)
+        @test firstdayofweek(d1, Wednesday) == Date(2022, 6, 22)
+        @test firstdayofweek(d1, Sunday) == Date(2022, 6, 26)
+        @test firstdayofweek(d2, Monday) == Date(2023, 1, 9)
+        @test firstdayofweek(d2, Wednesday) == Date(2023, 1, 11)
+        @test firstdayofweek(d2, Sunday) == Date(2023, 1, 15)
+        @test firstdayofweek(d3, Monday) == Date(2033, 2, 7)
+        @test firstdayofweek(d3, Wednesday) == Date(2033, 2, 9)
+        @test firstdayofweek(d3, Sunday) == Date(2033, 2, 13)
+        @test lastdayofweek(d1, Monday) == Date(2022, 6, 20)
+        @test lastdayofweek(d1, Wednesday) == Date(2022, 6, 22)
+        @test lastdayofweek(d1, Sunday) == Date(2022, 6, 26)
+        @test lastdayofweek(d2, Monday) == Date(2023, 1, 9)
+        @test lastdayofweek(d2, Wednesday) == Date(2023, 1, 11)
+        @test lastdayofweek(d2, Sunday) == Date(2023, 1, 15)
+        @test lastdayofweek(d3, Monday) == Date(2033, 2, 7)
+        @test lastdayofweek(d3, Wednesday) == Date(2033, 2, 9)
+        @test lastdayofweek(d3, Sunday) == Date(2033, 2, 13)
+        
         # Month
         @test firstdayofmonth(d1, Monday) == Date(2022, 6, 6)
         @test firstdayofmonth(d1, Wednesday) == Date(2022, 6, 1)
