@@ -18,12 +18,13 @@ end)
     d1 = Date(2022, 6, 24)
     d2 = Date(2023, 1, 12)
     d3 = Date(2033, 2, 7)
+    dt = DateTime("1996-01-05T12:30:00")
     
     @testset "Trivial Penultimate Functions" begin
         # Week
         @test penultimatedayofweek(d1) == Date(2022, 6, 25)
         @test penultimatedayofweek(d2) == Date(2023, 1, 14)
-        @test penultimatedayofweek(d3) == Date(2023, 2, 12)
+        @test penultimatedayofweek(d3) == Date(2033, 2, 12)
         
         # Month
         @test penultimatedayofmonth(d1) == Date(2022, 6, 29)
@@ -39,6 +40,12 @@ end)
         @test penultimatedayofyear(d1) == Date(2022, 12, 30)
         @test penultimatedayofyear(d2) == Date(2023, 12, 30)
         @test penultimatedayofyear(d3) == Date(2033, 12, 30)
+        
+        # Time type
+        @test penultimatedayofweek(dt) isa typeof(dt)
+        @test penultimatedayofmonth(dt) isa typeof(dt)
+        @test penultimatedayofquarter(dt) isa typeof(dt)
+        @test penultimatedayofyear(dt) isa typeof(dt)
     end
     
     @testset "Day-specific Penultimate Functions" begin
@@ -78,6 +85,12 @@ end)
         @test penultimatedayofyear(d3, Monday) == Date(2033, 12, 19)
         @test penultimatedayofyear(d3, Wednesday) == Date(2033, 12, 21)
         @test penultimatedayofyear(d3, Sunday) == Date(2033, 12, 18)
+        
+        # Time type
+        @test penultimatedayofweek(dt, Tuesday) isa typeof(dt)
+        @test penultimatedayofmonth(dt, Tuesday) isa typeof(dt)
+        @test penultimatedayofquarter(dt, Tuesday) isa typeof(dt)
+        @test penultimatedayofyear(dt, Tuesday) isa typeof(dt)
     end
     
     @testset "Dates (stdlib) Extended" begin
@@ -160,5 +173,15 @@ end)
         @test lastdayofyear(d3, Monday) == Date(2033, 12, 26)
         @test lastdayofyear(d3, Wednesday) == Date(2033, 12, 28)
         @test lastdayofyear(d3, Sunday) == Date(2033, 12, 25)
+        
+        # Time type
+        @test firstdayofweek(dt, Tuesday) isa typeof(dt)
+        @test lastdayofweek(dt, Tuesday) isa typeof(dt)
+        @test firstdayofmonth(dt, Tuesday) isa typeof(dt)
+        @test lastdayofmonth(dt, Tuesday) isa typeof(dt)
+        @test firstdayofquarter(dt, Tuesday) isa typeof(dt)
+        @test lastdayofquarter(dt, Tuesday) isa typeof(dt)
+        @test firstdayofyear(dt, Tuesday) isa typeof(dt)
+        @test lastdayofyear(dt, Tuesday) isa typeof(dt)
     end
 end
