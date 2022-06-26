@@ -12,6 +12,7 @@ Documenter.makedocs(
     pages = [
         "Home" => "index.md",
         "Documentation" => "documentation.md",
+        "Examples" => "examples.md"
     ]
 )
 
