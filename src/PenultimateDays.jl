@@ -41,6 +41,9 @@ end
 
 ## Quarter
 
+firstdayofquarter(dt::TimeType, d::Int) = firstdayofmonth(firstdayofquarter(dt), d)
+lastdayofquarter(dt::TimeType, d::Int) = lastdayofmonth(lastdayofquarter(dt), d)
+
 ## Year
 
 end  # end module
