@@ -11,9 +11,13 @@ for m in (:first, :last), t in (:week, :month, :quarter, :year)
         import Dates: $f
         
         @doc """
-            $($f)(datetime::TimeType, day::Int)
+            $($f)(dt::TimeType, d::Int) -> TimeType
         
-        Find the $($ms) day of the $($ts) that is a (Monday = 1, Tuesday = 2, &c.).
+        Adjusts `dt` to the $($ms) `d`-day of its $($ts), given some `d`, the day of the week as an `Int`, with `1 = Monday, 2 = Tuesday, &c...`
+        
+        For example, the `$($f)(dt, 6)` will find the $($ms) Saturday of the $($ts).  Dates also exports integer aliases `Monday`–`Sunday`, so you can write `$($f)(dt, Saturday)`.
+        
+        See also: `Dates.dayofweek`
         """
         $f
     end
@@ -60,9 +64,9 @@ for t in (:week, :month, :quarter, :year)
     ts = string(t)
     @eval begin 
         @doc """
-            $($f)(datetime::TimeType)
+            $($f)(dt::TimeType) -> TimeType
         
-        Adjusts dt to the penultimate (second-to-last) day of its $($ts).
+        Adjusts `dt` to the penultimate (second-to-last) day of its $($ts).
         """
         $f(dt::TimeType) = $f′(dt) - Day(1)
         export $f
