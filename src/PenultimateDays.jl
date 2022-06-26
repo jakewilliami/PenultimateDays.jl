@@ -19,6 +19,12 @@ for m in (:first, :last), t in (:week, :month, :quarter, :year)
     end
 end
 
+function firstdayofweek(dt::TimeType, d::Int)
+    fd_date = firstdayofweek(dt)
+    return fd_date + Day(d - 1)
+end
+lastdayofweek(dt::TimeType, d::Int) = firstdayofweek(dt, d)
+
 function firstdayofmonth(dt::TimeType, d::Int)
     fd_date = firstdayofmonth(dt)
     fd_i = dayofweek(fd_date)
