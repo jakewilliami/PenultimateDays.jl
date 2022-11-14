@@ -10,6 +10,8 @@ Similar to [Dates](https://github.com/JuliaLang/julia/tree/master/stdlib/Dates)'
 
 Unlike Dates' `*dayof*` functions, I have extended functionality to find, for example, the penultimate _Tuesday_ of a measure of time.  We have also extended some of Dates' `*dayof*` functions to allow this functionality.
 
+See also [jakewilliami/pt](https://github.com/jakewilliami/pt) for a command-line implementation using logic from this package.
+
 ## Quick Start
 
 ```julia
