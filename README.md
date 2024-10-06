@@ -57,3 +57,7 @@ julia> firstdayofmonth(d, Tuesday)
 julia> lastdayofmonth(d, Tuesday)
 2022-06-28
 ```
+
+## Citation
+
+If your research depends on PenultimateDays.jl, please consider giving us a formal citation: [`citation.bib`](./citation.bib).
