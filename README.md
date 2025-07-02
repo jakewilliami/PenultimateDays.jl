@@ -14,7 +14,7 @@ See also [jakewilliami/pt](https://github.com/jakewilliami/pt) for a command-lin
 
 ## Quick Start
 
-```julia
+```julia-repl
 julia> using Dates, PenultimateDays
 
 julia> d = today()
@@ -45,7 +45,7 @@ julia> penultimatedayofyear(d, Tuesday)  # second-to-last Tuesday of the year
 ## Extending the Dates standard library
 
 We have also extended the Dates standard library to allow specification of day for `*dayof*` functions:
-```julia
+```julia-repl
 julia> using Dates, PenultimateDays
 
 julia> d = today()
